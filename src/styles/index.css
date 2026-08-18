@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg text-white font-sans antialiased;
+}
+
+.card {
+  @apply bg-card border border-cardBorder rounded-2xl p-6;
+}
+
+.badge {
+  @apply text-xs font-medium px-3 py-1 rounded-full bg-accent/10 text-accent border border-accent/20;
+}
+
+.section {
+  @apply max-w-6xl mx-auto px-6 py-16;
+}
+
+.section-title {
+  @apply text-3xl font-bold mb-8;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 bg-gradient-to-r from-accent to-accent2 text-white font-medium px-5 py-3 rounded-lg hover:shadow-glow transition-shadow duration-300;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 border border-cardBorder text-white font-medium px-5 py-3 rounded-lg hover:border-accent/50 transition-colors duration-300;
+}
+
+.icon-circle {
+  @apply w-10 h-10 rounded-full bg-card border border-cardBorder flex items-center justify-center hover:border-accent/50 hover:text-accent transition-colors duration-300;
+}

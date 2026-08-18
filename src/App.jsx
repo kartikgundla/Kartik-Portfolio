@@ -1,26 +1,29 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Skills from "./pages/Skills";
-import Projects from "./pages/Projects";
-import Goals from "./pages/Goals.jsx";
-import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Education from "./sections/Education";
+import Experience from "./sections/Experience";
+import Skills from "./sections/Skills";
+import Achievements from "./sections/Achievements";
+import Projects from "./sections/Projects";
+import Goals from "./sections/Goals";
+import Contact from "./sections/Contact";
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
+    <div className="min-h-screen bg-bg">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/goals" element={<Goals />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </BrowserRouter>
+      <Hero />
+      <About />
+      <Education />
+      <Experience />
+      <Skills />
+      <Achievements />
+      <Projects />
+      <Goals />
+      <Contact />
+      <Footer />
+    </div>
   );
 }
-
-export default App;
