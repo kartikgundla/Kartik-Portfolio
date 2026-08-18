@@ -1,8 +1,9 @@
+// src/data/skills.js
 const skills = [
-  "C", "C++", "Java", "Python", "React.js", "React Native", "FastAPI",
-  "PostgreSQL", "SQL", "DBMS", "HTML", "CSS", "JavaScript", "Linux",
-  "OOP", "Data Structures", "Git & GitHub", "UI/UX Basics",
-  "Computer Networking", "Team Leadership",
+  { name: "React.js", category: "Frameworks" },
+  { name: "Python", category: "Languages" },
+  { name: "PostgreSQL", category: "Databases" },
+  // ...
 ];
 
-export default skills;
+export { skills };

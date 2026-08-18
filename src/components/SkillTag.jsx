@@ -1,7 +1,8 @@
-export default function SkillTag({ label }) {
+function SkillTag({ label }) {
   return (
-    <span className="px-4 py-2 rounded-lg bg-card border border-cardBorder text-sm hover:border-accent/50 transition-colors">
+    <span className="px-4 py-2 bg-[#15121F] border border-white/10 rounded-lg text-sm text-gray-300">
       {label}
     </span>
   );
 }
+export default SkillTag;
