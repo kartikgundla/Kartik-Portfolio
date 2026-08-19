@@ -65,6 +65,7 @@ export default function Projects() {
 
       <a
         href="https://github.com/kartikgundla"
+        target="_blank"
         className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-accent2 hover:underline"
       >
         <ExternalLink size={16} />
