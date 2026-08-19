@@ -1,25 +1,35 @@
-import { Rocket, Compass, Target, Star } from "lucide-react";
-import goals from "../data/goals";
+import { Rocket, Target, TrendingUp, Star } from "lucide-react";
+import { goals } from "../data/goals";
+import Reveal from "../components/Reveal";
 
-const icons = { Rocket, Compass, Target, Star };
+const icons = { rocket: Rocket, target: Target, trending: TrendingUp, star: Star };
 
 export default function Goals() {
   return (
     <section id="goals" className="section">
       <h2 className="section-title">Future Goals</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative">
-        <div className="hidden md:block absolute top-8 left-[12%] right-[12%] h-px border-t border-dashed border-cardBorder -z-0" />
-        {goals.map(({ title, period, desc, iconName }) => {
-          const Icon = icons[iconName];
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {goals.map((goal, i) => {
+          const Icon = icons[goal.icon];
           return (
-            <div key={title} className="text-center relative z-10">
-              <div className="w-16 h-16 mx-auto rounded-full bg-card border border-accent/30 flex items-center justify-center mb-4">
-                <Icon className="text-accent" size={24} />
+            <Reveal key={goal.term} type="fadeUp" delay={i * 0.1}>
+              <div className="card flex flex-col items-center text-center min-h-[260px]">
+                <div className="w-16 h-16 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center mb-5">
+                  <Icon className="text-accent2" size={26} />
+                </div>
+
+                <span className="badge text-xs mb-3">{goal.duration}</span>
+
+                <h3 className="text-lg font-bold text-white mb-3">
+                  {goal.term}
+                </h3>
+
+                <p className="text-sm text-muted leading-relaxed">
+                  {goal.desc}
+                </p>
               </div>
-              <p className="font-semibold">{title}</p>
-              {period && <p className="text-xs text-muted mb-2">{period}</p>}
-              <p className="text-xs text-muted">{desc}</p>
-            </div>
+            </Reveal>
           );
         })}
       </div>

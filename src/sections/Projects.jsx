@@ -1,26 +1,77 @@
-import { ArrowRight } from "lucide-react";
-import projects from "../data/projects";
-import ProjectCard from "../components/ProjectCard";
-import Button from "../components/Button";
+import { useState } from "react";
+import { ExternalLink } from "lucide-react";
+import { projects } from "../data/projects";
+import Reveal from "../components/Reveal";
 
 export default function Projects() {
+  const [activeId, setActiveId] = useState(projects[0].id);
+  const active = projects.find((p) => p.id === activeId);
+
   return (
     <section id="projects" className="section">
       <h2 className="section-title">My Projects</h2>
-      <div className="grid md:grid-cols-2 gap-5 mb-8">
-        {projects.map((p) => (
-          <ProjectCard key={p.title} {...p} />
-        ))}
-      </div>
 
-      <div className="text-center">
-        <Button href="https://github.com/kartikgundla" variant="secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.21.7.83.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          View All Projects on GitHub <ArrowRight size={16} />
-        </Button>
-      </div>
+      {/* Tab bar - slides in from the right */}
+      <Reveal type="slideRight">
+        <div className="flex flex-wrap gap-3 mb-8">
+          {projects.map((project, index) => (
+            <button
+              key={project.id}
+              onClick={() => setActiveId(project.id)}
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-all ${
+                activeId === project.id
+                  ? "border-accent bg-accent/10 text-white"
+                  : "border-cardBorder bg-card text-muted hover:border-accent/40 hover:text-white"
+              }`}
+            >
+              <span className="text-accent2 font-mono">{index + 1}.</span>
+              {project.title}
+              <span
+                className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                  activeId === project.id
+                    ? "bg-accent2/20 text-accent2"
+                    : "bg-white/5 text-muted"
+                }`}
+              >
+                {project.tag}
+              </span>
+            </button>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* Detail panel - slides in from the left, re-animates when active project changes */}
+      <Reveal key={active.id} type="slideLeft" delay={0.1}>
+        <div className="card border-accent/30">
+          <span className="badge mb-4 inline-block">{active.badge}</span>
+
+          <h3 className="text-3xl font-bold text-white mb-2">{active.title}</h3>
+          <p className="text-accent2 text-sm font-mono mb-5">{active.tag}</p>
+
+          <p className="text-muted leading-relaxed mb-6 max-w-2xl">
+            {active.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {active.tech.map((t) => (
+              <span
+                key={t}
+                className="px-3 py-1 bg-accent/10 text-accent2 border border-accent/30 rounded-full text-xs font-medium"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <a
+        href="https://github.com/kartikgundla"
+        className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-accent2 hover:underline"
+      >
+        <ExternalLink size={16} />
+        View All Projects on GitHub →
+      </a>
     </section>
   );
 }

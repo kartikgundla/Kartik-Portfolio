@@ -1,85 +1,80 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
+import { useState } from "react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 
-const links = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Goals", href: "#goals" },
-  { label: "Contact", href: "#contact" },
+const navLinks = [
+  { name: "Home", id: "home" },
+  { name: "About", id: "about" },
+  { name: "Education", id: "education" },
+  { name: "Experience", id: "experience" },
+  { name: "Skills", id: "skills" },
+  { name: "Achievements", id: "achievements" },
+  { name: "Projects", id: "projects" },
+  { name: "Goals", id: "goals" },
+  { name: "Contact", id: "contact" },
 ];
 
-export default function Navbar() {
-  const [active, setActive] = useState("Home");
+function Navbar() {
+  const [isDark, setIsDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const sections = links.map((l) => document.querySelector(l.href)).filter(Boolean);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const match = links.find((l) => l.href === `#${entry.target.id}`);
-            if (match) setActive(match.label);
-          }
-        });
-      },
-      { rootMargin: "-40% 0px -50% 0px" }
-    );
-
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-bg/80 backdrop-blur-md border-b border-cardBorder">
-      <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#home" className="font-extrabold text-lg tracking-tight">KG</a>
+    <nav className="w-full flex items-center justify-between px-4 md:px-16 py-4 md:py-6 bg-bg border-b border-white/10 sticky top-0 z-50">
+      <div className="text-white font-bold text-lg md:text-xl tracking-wide">KG</div>
 
-        <ul className="hidden md:flex items-center gap-8 text-sm">
-          {links.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                className={`transition-colors ${
-                  active === link.label ? "text-accent font-medium" : "text-muted hover:text-white"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      {/* Desktop nav - only shows on large screens */}
+      <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
+        {navLinks.map((link) => (
+          <li key={link.id}>
+            <button
+              onClick={() => scrollToSection(link.id)}
+              className="text-sm font-semibold text-gray-300 hover:text-accent2 transition-colors whitespace-nowrap"
+            >
+              {link.name}
+            </button>
+          </li>
+        ))}
+      </ul>
 
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <button
-            className="md:hidden icon-circle"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={16} /> : <Menu size={16} />}
-          </button>
-        </div>
-      </nav>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setIsDark(!isDark)}
+          className="icon-circle w-9 h-9 md:w-10 md:h-10"
+        >
+          {isDark ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
 
+        {/* Hamburger - shows below lg breakpoint */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden icon-circle w-9 h-9"
+        >
+          {menuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+
+      {/* Mobile dropdown */}
       {menuOpen && (
-        <ul className="md:hidden flex flex-col gap-1 px-6 pb-4 text-sm">
-          {links.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`block py-2 ${active === link.label ? "text-accent" : "text-muted"}`}
+        <ul className="absolute top-full left-0 w-full bg-bg border-b border-white/10 flex flex-col items-center gap-5 py-6 lg:hidden max-h-[70vh] overflow-y-auto">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <button
+                onClick={() => scrollToSection(link.id)}
+                className="text-base font-semibold text-gray-300 hover:text-accent2 transition-colors"
               >
-                {link.label}
-              </a>
+                {link.name}
+              </button>
             </li>
           ))}
         </ul>
       )}
-    </header>
+    </nav>
   );
 }
+
+export default Navbar;
