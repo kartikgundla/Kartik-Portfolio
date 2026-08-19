@@ -1,32 +1,53 @@
+import { Briefcase, Calendar } from "lucide-react";
+import Reveal from "../components/Reveal";
 export default function Experience() {
-  const points = [
-    "Worked on construction site documentation",
-    "Understood railway operations & workflow",
-    "Team coordination & field work",
-  ];
-
   return (
     <section id="experience" className="section">
+       {/* min-h-screen flex flex-col justify-center"> */}
       <h2 className="section-title">Experience</h2>
-      <div className="card flex flex-col md:flex-row gap-5">
-        <div className="w-14 h-14 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-2xl shrink-0">
-          🚆
-        </div>
-        <div className="flex-1">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-            <h3 className="font-semibold">Indian Railways – DRM Solapur</h3>
-            <span className="badge">Apr 2025 – Jul 2025 (3 months)</span>
+      <Reveal type="slideLeft">
+      <div className="card max-w-4xl">
+        <div className="flex flex-col md:flex-row md:items-start gap-6">
+          <div className="w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <Briefcase className="text-accent2" size={28} />
           </div>
-          <p className="text-sm text-muted mb-3">Construction Field Intern</p>
-          <ul className="space-y-1.5">
-            {points.map((p) => (
-              <li key={p} className="text-sm text-muted flex gap-2">
-                <span className="text-accent">•</span> {p}
+
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+              <h3 className="text-2xl font-bold text-white">
+                Indian Railways – DRM Solapur
+              </h3>
+              <span className="badge flex items-center gap-1">
+                <Calendar size={12} />
+                Apr 2025 – Jul 2025 (3 months)
+              </span>
+            </div>
+
+            <p className="text-accent2 font-medium mb-6">
+              Construction Field Intern
+            </p>
+
+            <ul className="space-y-3">
+              <li className="flex gap-3 text-muted leading-relaxed">
+                <span className="text-accent2 mt-1">▸</span>
+                Worked on construction site documentation, maintaining
+                accurate records of ongoing railway infrastructure projects.
               </li>
-            ))}
-          </ul>
+              <li className="flex gap-3 text-muted leading-relaxed">
+                <span className="text-accent2 mt-1">▸</span>
+                Understood railway operations & workflow through hands-on
+                exposure to the Construction Department.
+              </li>
+              <li className="flex gap-3 text-muted leading-relaxed">
+                <span className="text-accent2 mt-1">▸</span>
+                Contributed to team coordination & field work, bridging
+                classroom knowledge with real-world engineering practices.
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

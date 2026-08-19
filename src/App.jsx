@@ -9,10 +9,12 @@ import Achievements from "./sections/Achievements";
 import Projects from "./sections/Projects";
 import Goals from "./sections/Goals";
 import Contact from "./sections/Contact";
+import CustomCursor from "./components/CustomCursor";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen bg-bg text-white">
+       <CustomCursor />
       <Navbar />
       <Hero />
       <About />
