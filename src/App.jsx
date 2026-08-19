@@ -14,7 +14,7 @@ import CustomCursor from "./components/CustomCursor";
 export default function App() {
   return (
     <div className="min-h-screen bg-bg text-white">
-       <CustomCursor />
+      <CustomCursor />
       <Navbar />
       <Hero />
       <About />
