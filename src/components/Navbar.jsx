@@ -23,31 +23,40 @@ function Navbar() {
   };
 
   return (
-    <nav className="w-full flex items-center justify-between px-4 md:px-16 py-4 md:py-6 bg-bg border-b border-white/10 sticky top-0 z-50">
-      <div className="text-white font-bold text-lg md:text-xl tracking-wide">KG</div>
+    <nav className="w-full bg-bg border-b border-white/10 sticky top-0 z-50 px-6 lg:px-8 py-4 md:py-6">
+      {/* Container aligned with page content */}
+      <div className="max-w-7xl mx-auto relative flex items-center justify-between">
+        
+        {/* Name aligned to the left edge of the content container */}
+        <div className="text-white font-bold text-base lg:text-xl tracking-wide whitespace-nowrap">
+          Kartik Gundla
+        </div>
 
-      <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
-        {navLinks.map((link) => (
-          <li key={link.id}>
-            <button
-              onClick={() => scrollToSection(link.id)}
-              className="text-sm font-semibold text-gray-300 hover:text-accent2 transition-colors whitespace-nowrap"
-            >
-              {link.name}
-            </button>
-          </li>
-        ))}
-      </ul>
+        {/* Links positioned toward the right/center */}
+        <ul className="hidden lg:flex items-center gap-5 xl:gap-7 ml-auto">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <button
+                onClick={() => scrollToSection(link.id)}
+                className="text-sm font-semibold text-gray-300 hover:text-accent2 transition-colors whitespace-nowrap"
+              >
+                {link.name}
+              </button>
+            </li>
+          ))}
+        </ul>
 
-      <div className="flex items-center gap-3">
+        {/* Mobile Toggle Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="lg:hidden icon-circle w-9 h-9"
+          className="lg:!hidden icon-circle w-9 h-9 ml-auto"
         >
           {menuOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
+
       </div>
 
+      {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <ul className="absolute top-full left-0 w-full bg-bg border-b border-white/10 flex flex-col items-center gap-5 py-6 lg:hidden max-h-[70vh] overflow-y-auto">
           {navLinks.map((link) => (
