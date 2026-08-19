@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Home", id: "home" },
@@ -14,7 +14,6 @@ const navLinks = [
 ];
 
 function Navbar() {
-  const [isDark, setIsDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
@@ -27,7 +26,6 @@ function Navbar() {
     <nav className="w-full flex items-center justify-between px-4 md:px-16 py-4 md:py-6 bg-bg border-b border-white/10 sticky top-0 z-50">
       <div className="text-white font-bold text-lg md:text-xl tracking-wide">KG</div>
 
-      {/* Desktop nav - only shows on large screens */}
       <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
         {navLinks.map((link) => (
           <li key={link.id}>
@@ -43,14 +41,6 @@ function Navbar() {
 
       <div className="flex items-center gap-3">
         <button
-          onClick={() => setIsDark(!isDark)}
-          className="icon-circle w-9 h-9 md:w-10 md:h-10"
-        >
-          {isDark ? <Sun size={16} /> : <Moon size={16} />}
-        </button>
-
-        {/* Hamburger - shows below lg breakpoint */}
-        <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden icon-circle w-9 h-9"
         >
@@ -58,7 +48,6 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <ul className="absolute top-full left-0 w-full bg-bg border-b border-white/10 flex flex-col items-center gap-5 py-6 lg:hidden max-h-[70vh] overflow-y-auto">
           {navLinks.map((link) => (

@@ -71,6 +71,7 @@ export default function Contact() {
               </div>
             </div>
           </Reveal>
+          
           {/* Right: form */}
           <Reveal type="slideRight" delay={0.15}>
             <div className="card">

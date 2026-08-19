@@ -18,20 +18,18 @@ export default function Projects() {
             <button
               key={project.id}
               onClick={() => setActiveId(project.id)}
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-all ${
-                activeId === project.id
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-all ${activeId === project.id
                   ? "border-accent bg-accent/10 text-white"
                   : "border-cardBorder bg-card text-muted hover:border-accent/40 hover:text-white"
-              }`}
+                }`}
             >
               <span className="text-accent2 font-mono">{index + 1}.</span>
               {project.title}
               <span
-                className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
-                  activeId === project.id
+                className={`ml-2 text-xs px-2 py-0.5 rounded-full ${activeId === project.id
                     ? "bg-accent2/20 text-accent2"
                     : "bg-white/5 text-muted"
-                }`}
+                  }`}
               >
                 {project.tag}
               </span>
