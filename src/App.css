@@ -131,7 +131,9 @@ body {
   animation: spin-slow 12s linear infinite;
 }
 
-
+.shadow-glow {
+  box-shadow: 0 0 60px 20px rgba(139, 92, 246, 0.35);
+}
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 /* 
