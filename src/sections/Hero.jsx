@@ -54,7 +54,7 @@ export default function Hero() {
         >
           <Typewriter
             options={{
-              strings: ["Diploma Student", "React Developer", "Python Enthusiast", "Problem Solver"],
+              strings: ["Diploma Student", "React Developer", "Python Enthusiast", "Problem Solver","Full Stack Developer"],
               autoStart: true,
               loop: true,
               delay: 60,
@@ -118,9 +118,9 @@ export default function Hero() {
       </div >
 
       <motion.div initial="hidden" animate="visible" variants={photoVariant} className="flex justify-center items-center">
-        <div className="group relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem]">
+        <div className="group relative w-96 h-96 md:w-[28rem] md:h-[28rem]">
           <div className="absolute inset-0 rounded-full border-2 border-accent/30 scale-110" />
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/20 to-transparent blur-2xl" />
+          <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-accent/30 to-transparent blur-3xl" />
           <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-accent/40 shadow-glow">
             <img src={myPhoto} alt="Kartik Gundla" className="w-full h-full object-cover" />
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent" />
