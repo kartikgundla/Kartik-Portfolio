@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import { Mail, ArrowRight } from "lucide-react";
 import Typewriter from "typewriter-effect";
 import myPhoto from "../assets/images/myPhoto.png";
-
+import RadialRevealButton from "../components/RadialRevealButton";
+import GlowBorder from "../components/GlowBorder";
+import ShinyText from "../components/ShinyText";
 const nameVariant = {
   hidden: { opacity: 0, y: 0, scale: 1.4 },
   visible: {
@@ -41,11 +43,10 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={nameVariant}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 leading-tight"
+          className="text-6xl md:text-7xl font-bold mb-2 leading-tight"
         >
-          Hi, I'm <span className="text-accent2">Kartik Gundla</span>
+          Hi, I'm <ShinyText text="Kartik Gundla" textColor="#a855f7" shineColor="#ec4899" speed={2.5} />
         </motion.h1>
-
         <motion.h2
           initial="hidden"
           animate="visible"
@@ -54,7 +55,7 @@ export default function Hero() {
         >
           <Typewriter
             options={{
-              strings: ["Diploma Student", "React Developer", "Python Enthusiast", "Problem Solver","Full Stack Developer"],
+              strings: ["Diploma Student", "React Developer", "Python Enthusiast", "Problem Solver", "Full Stack Developer"],
               autoStart: true,
               loop: true,
               delay: 60,
@@ -73,9 +74,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div initial="hidden" animate="visible" variants={fadeUp(0.6)} className="flex flex-wrap gap-4 mb-8">
-          <a href="#projects" className="btn-primary">
-            View My Work <ArrowRight size={16} />
-          </a>
+          <RadialRevealButton label="View My Work" href="#projects" />
         </motion.div>
 
         <motion.div initial="hidden" animate="visible" variants={fadeUp(0.7)}>
@@ -119,11 +118,12 @@ export default function Hero() {
 
       <motion.div initial="hidden" animate="visible" variants={photoVariant} className="flex justify-center items-center">
         <div className="group relative w-96 h-96 md:w-[28rem] md:h-[28rem]">
-          <div className="absolute inset-0 rounded-full border-2 border-accent/30 scale-110" />
           <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-accent/30 to-transparent blur-3xl" />
-          <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-accent/40 shadow-glow">
+
+          <GlowBorder />
+
+          <div className="relative w-full h-full rounded-full overflow-hidden shadow-glow">
             <img src={myPhoto} alt="Kartik Gundla" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
         </div>
       </motion.div>
