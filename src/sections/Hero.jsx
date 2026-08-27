@@ -6,6 +6,7 @@ import myPhoto from "../assets/images/myPhoto.png";
 import RadialRevealButton from "../components/RadialRevealButton";
 import GlowBorder from "../components/GlowBorder";
 import ShinyText from "../components/ShinyText";
+import DepthText from "../components/DepthText"
 const nameVariant = {
   hidden: { opacity: 0, y: 0, scale: 1.4 },
   visible: {
@@ -45,7 +46,24 @@ export default function Hero() {
           variants={nameVariant}
           className="text-6xl md:text-7xl font-bold mb-2 leading-tight"
         >
-          Hi, I'm <ShinyText text="Kartik Gundla" textColor="#a855f7" shineColor="#ec4899" speed={2.5} />
+          Hi, I'm
+          <DepthText
+            text="Kartik Gundla"
+            layers={30}
+            depth={2.2}
+            faceColor="#f8fafc"
+            depthColor="#a855f7"
+            tilt={6}
+            pointerTracking
+            smoothing={0.14}
+            perspective={900}
+            autoOrbit
+            orbitSpeed={0.3}
+            fontSize="clamp(2.5rem, 8vw, 5.5rem)"
+            fontWeight={900}
+            shadow
+          />
+          {/* <ShinyText text="Kartik Gundla" textColor="#a855f7" shineColor="#ec4899" speed={2.5} /> */}
         </motion.h1>
         <motion.h2
           initial="hidden"
